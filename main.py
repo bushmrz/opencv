@@ -6,10 +6,6 @@ image_bw = cv2.imread(PATH, cv2.IMREAD_GRAYSCALE)
 image_color = cv2.imread(PATH, 1)
 image_hsv = cv2.imread(PATH)
 image_hsv = cv2.cvtColor(image_hsv, cv2.COLOR_RGB2HSV)
-# cv2.imshow("IMG", image)
-#
-# cv2.waitKey(0)
-
 
 def open_image(image, scale):
     width = int(image.shape[1] * scale)
