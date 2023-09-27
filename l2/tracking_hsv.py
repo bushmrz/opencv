@@ -60,7 +60,7 @@ while True:
 
 
 
-img = cv2.imread("cat.jpg")
+img = cv2.imread("D:\\opencv\\opencv\\cat.jpg")
 
 def erode(image, kernel):
     m, n, _ = image.shape

@@ -1,6 +1,6 @@
 import cv2
 
-PATH = "cat.jpg"
+PATH = "D:\\opencv\\opencv\\cat.jpg"
 image_bw = cv2.imread(PATH, cv2.IMREAD_GRAYSCALE)
 
 image_color = cv2.imread(PATH, 1)
