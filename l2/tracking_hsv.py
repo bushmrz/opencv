@@ -38,7 +38,7 @@ while True:
 
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    lower_red = np.array([0, 120, 150])  # Нижний порог оттенка, насыщенности и значения
+    lower_red = np.array([0, 100, 150])  # Нижний порог оттенка, насыщенности и значения
     upper_red = np.array([10, 255, 255])  # Верхний порог оттенка, насыщенности и значения
 
     red_mask = cv2.inRange(hsv_frame, lower_red, upper_red)
