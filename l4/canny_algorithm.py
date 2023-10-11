@@ -15,18 +15,19 @@ def open_wb_blur_img():
     cv2.imshow("EDGES IMG", edges)
 
     # Фильтры Sobel используются для вычисления градиента в направлениях x и y
-    gradient_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
-    gradient_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+    gradient_x = cv2.Sobel(blur_img, cv2.CV_64F, 1, 0, ksize=3)
+    gradient_y = cv2.Sobel(blur_img, cv2.CV_64F, 0, 1, ksize=3)
 
     # Вычисление матрицы длин (модуля) и матрицы угловых значений
     magnitude = np.sqrt(gradient_x ** 2 + gradient_y ** 2)
     angle = np.arctan2(gradient_y, gradient_x)
 
-    non_max_suppressed = np.zeros_like(edges)
+    non_max_suppressed = np.zeros_like(blur_img)
 
     # Если текущий пиксель является локальным максимумом, он сохраняется в матрице, иначе остается пустым
-    for i in range(1, edges.shape[0] - 1):
-        for j in range(1, edges.shape[1] - 1):
+    # Подавление немаксимумов
+    for i in range(1, blur_img.shape[0] - 1):
+        for j in range(1, blur_img.shape[1] - 1):
             current_angle = angle[i, j]
 
             if (0 <= current_angle < np.pi / 4) or (7 * np.pi / 4 <= current_angle <= 2 * np.pi):
@@ -61,12 +62,12 @@ def open_wb_blur_img():
             if strong_edges[i, j]:
                 non_max_suppressed[i, j] = 255
             elif weak_edges[i, j]:
-                non_max_suppressed[i, j] = 50  # Произвольное значение для слабых ребер
+                non_max_suppressed[i, j] = 10  # Произвольное значение для слабых ребер
 
     cv2.imshow("DOUBLE FILTER", non_max_suppressed)
 
-    cv2.imshow("LENGTH MATRIX", magnitude)
-    cv2.imshow("ANGLE MATRIX", angle)
+    # cv2.imshow("LENGTH MATRIX", magnitude)
+    # cv2.imshow("ANGLE MATRIX", angle)
     cv2.waitKey(0)
 
 
