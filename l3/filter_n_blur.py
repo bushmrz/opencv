@@ -46,11 +46,11 @@ def getBlurPicture(size, deviation, img):
     return blur
 
 
-deviation = 5
-size = 5
+deviation = 30
+size = 7
 
 out1 = getBlurPicture(img=getPicture(), deviation=deviation, size=size)
-out2 = cv2.GaussianBlur(getPicture(), (5, 5), 5)
+out2 = cv2.GaussianBlur(getPicture(), (5, 5), 50)
 cv2.imshow("original", getPicture())
 cv2.imshow("custom", out1)
 cv2.imshow("gaussan cv2 blur", out2)
