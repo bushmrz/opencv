@@ -5,7 +5,7 @@ from keras.utils import to_categorical
 from keras.preprocessing import image
 import numpy as np
 import cv2
-from tensorflow.python import keras
+
 
 # Загрузка данных MNIST
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
