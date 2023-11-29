@@ -17,7 +17,9 @@ y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 
 # Создание модели многослойного персептрона
+# Данные будут передаваться от входного слоя к выходному слою последовательно
 model = Sequential([
+    # слой выполняет линейные преобразования данных и активацию ReLU
     Dense(256, activation='relu', input_shape=(28 * 28,)),
     Dense(128, activation='relu'),
     Dense(10, activation='softmax')
@@ -25,9 +27,15 @@ model = Sequential([
 
 print(model.summary())  # вывод структуры НС в консоль
 
-model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+model.compile(
+    # оптимизатор adam учитывает как скорость изменения параметров модели, так и прошлые изменения
+    optimizer='adam',
+
+    #функция потерь, которая используется для оценки ошибки между предсказанными значениями и истинными метками
+    loss='categorical_crossentropy',
+
+    #accuracy измеряет долю правильно классифицированных примеров
+    metrics=['accuracy'])
 
 model.fit(X_train, y_train, batch_size=255, epochs=20, validation_split=0.25)
 # model.fit(X_test, y_test, batch_size=64, epochs=5, validation_split=0.25)
